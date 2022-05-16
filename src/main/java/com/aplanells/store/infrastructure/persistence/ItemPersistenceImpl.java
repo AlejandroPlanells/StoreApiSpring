@@ -2,10 +2,12 @@ package com.aplanells.store.infrastructure.persistence;
 
 import com.aplanells.store.domain.entity.Item;
 import com.aplanells.store.domain.persistence.ItemPersistence;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class ItemPersistenceImpl implements ItemPersistence {
     private final ItemRepository itemRepository;
 
