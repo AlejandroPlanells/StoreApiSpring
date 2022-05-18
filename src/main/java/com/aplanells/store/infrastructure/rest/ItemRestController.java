@@ -50,6 +50,13 @@ public class ItemRestController {
     }
 
     @CrossOrigin
+    @PatchMapping(value = "/items", produces = "application/json", consumes = "application/json")
+    public ResponseEntity<ItemDto> updateItem(@RequestBody ItemDto itemDto) {
+        ItemDto itemUpdated = this.itemService.saveItem(itemDto);
+        return new ResponseEntity<>(itemUpdated, HttpStatus.OK);
+    }
+
+    @CrossOrigin
     @DeleteMapping(value = "/items/{itemId}")
     public ResponseEntity<?> deleteItemById(@PathVariable Long itemId) {
         this.itemService.deleteItem(itemId);
