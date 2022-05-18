@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ItemRestController {
@@ -53,6 +54,19 @@ public class ItemRestController {
     public ResponseEntity<?> deleteItemById(@PathVariable Long itemId) {
         this.itemService.deleteItem(itemId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/items/{itemId}")
+    public ResponseEntity<ItemDto> getItemById(@PathVariable Long itemId) {
+        Optional<ItemDto> itemDto = this.itemService.getItemById(itemId);
+
+        if (itemDto.isPresent()) {
+            return new ResponseEntity<>(itemDto.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
 }
