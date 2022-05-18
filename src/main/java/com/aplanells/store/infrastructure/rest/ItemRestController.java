@@ -48,4 +48,11 @@ public class ItemRestController {
         return new ResponseEntity<>(itemSaved, HttpStatus.CREATED);
     }
 
+    @CrossOrigin
+    @DeleteMapping(value = "/items/{itemId}")
+    public ResponseEntity<?> deleteItemById(@PathVariable Long itemId) {
+        this.itemService.deleteItem(itemId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
