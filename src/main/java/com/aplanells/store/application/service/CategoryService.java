@@ -10,4 +10,6 @@ public interface CategoryService {
     Optional<CategoryDto> getCategoryById(Long categoryId);
     CategoryDto saveCategory(CategoryDto categoryDto);
     void deleteCategory(Long categoryId);
+
+    List<CategoryDto> getAllCategoriesByName(String partialName);
 }
